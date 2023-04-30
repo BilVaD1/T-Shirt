@@ -1,0 +1,56 @@
+name: Build-Test-Deploy
+
+on: [push]  # Here I specified the action (push, pull)
+
+
+jobs:
+
+  build-tests:
+    runs-on: ubuntu-latest # In which machine the image will be created
+
+    steps:
+        - name: Checkout React # The name of process
+          uses: actions/checkout@v3  # The name of actions(here I specified the branch with React(main))
+          with:
+            repository: BilVaD1/T-Shirt
+            path: website-repository # This is the path to the folder on the virtual machine to the folder with main branch
+            ref: main # Name of repository
+
+        - name: Checkout Tests # The name of process
+          uses: actions/checkout@v3  # The name of actions(here I specified the branch with tests(Tests))
+          with:
+            repository: BilVaD1/Tests_for_TShirt
+            path: tests-repository # This is the path to the folder on the virtual machine to the folder with Tests branch
+            ref: main # Name of repository
+
+        - uses: actions/setup-node@v2 # setup node
+          with:
+            node-version: 18
+
+        - name: Install from main
+          run: |
+            cd website-repository
+            npm install
+
+        - name: startLocal in main
+          run: |
+            cd website-repository
+            npm run dev &
+            sleep 10
+
+        - name: Install tests dependencies from Tests branch
+          run: |
+            cd tests-repository
+            npm install
+
+        - name: Tests
+          run: |
+            cd tests-repository
+            npm run cy:run
+
+        - name: Archive Test Results
+          if: always() # That means the report will be created every time, whether the Tests step is successful or failed.
+          uses: actions/upload-artifact@v3
+          with:
+            name: allureReport
+            path: tests-repository/allure-report
