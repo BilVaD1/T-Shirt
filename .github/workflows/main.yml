@@ -27,12 +27,12 @@ jobs:
           with:
             node-version: 18
 
-        - name: Install from main
+        - name: Install from website-repository
           run: |
             cd website-repository
             npm install
 
-        - name: startLocal in main
+        - name: startLocal in website-repository
           run: |
             cd website-repository
             npm run dev &
