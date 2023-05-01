@@ -14,14 +14,14 @@ jobs:
           with:
             repository: BilVaD1/T-Shirt
             path: website-repository # This is the path to the folder on the virtual machine to the folder with main branch
-            ref: main # Name of repository
+            #ref: main # Name of repository
 
         - name: Checkout Tests # The name of process
           uses: actions/checkout@v3  # The name of actions(here I specified the branch with tests(Tests))
           with:
             repository: BilVaD1/Tests_for_TShirt
             path: tests-repository # This is the path to the folder on the virtual machine to the folder with Tests branch
-            ref: main # Name of repository
+            #ref: main # Name of repository
 
         - uses: actions/setup-node@v2 # setup node
           with:
