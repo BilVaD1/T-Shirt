@@ -34,7 +34,7 @@ const Home = () => {
                             </p>
 
                             <CustomButton 
-                                data-testid="custom-btn"
+                                data-testid="custom-btn-test"
                                 type="filled"
                                 title="Customize It"
                                 handleClick={() => state.intro = false}
