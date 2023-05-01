@@ -5,4 +5,5 @@ Also e2e tests on Cypress with visual regression were set up via GitHub Actions.
 
 ## Installation
 1. Clone the repository to your local machine
+2. ```npm install```
 2. ```npm run dev```
