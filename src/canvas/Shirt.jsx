@@ -12,7 +12,7 @@ const Shirt = () => {
     
     useEffect(() => {
         console.log( nodes, materials )
-    }, []);
+    }, [materials]);
 
     const logoTexture = useTexture(snap.logoDecal)
     const fullTexture = useTexture(snap.fullDecal)
