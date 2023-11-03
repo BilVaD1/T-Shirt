@@ -2,6 +2,14 @@ name: Build-Test-Deploy
 
 on: [push]  # Here I specified the action (push, pull)
 
+permissions:
+  actions: write
+  checks: write
+  contents: read
+  discussions: write
+  pull-requests: write
+  statuses: write
+
 
 jobs:
 
@@ -54,3 +62,11 @@ jobs:
           with:
             name: allureReport
             path: tests-repository/allure-results
+
+        - name: Run Meticulous tests
+          if: always()
+          uses: alwaysmeticulous/report-diffs-action@v1
+          with:
+            api-token: ${{ secrets.METICULOUS_API_TOKEN }}
+            # TODO: Update the port and protocol below to match your app's frontend
+            app-url: "http://localhost:3000/"
