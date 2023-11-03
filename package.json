@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@alwaysmeticulous/recorder-loader": "^2.84.0",
     "@react-three/drei": "^9.64.0",
     "@react-three/fiber": "^8.12.0",
     "framer-motion": "^10.11.2",
